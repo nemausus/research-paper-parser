@@ -10,8 +10,9 @@
     <packaging>jar</packaging>
 
     <name>Research Paper Parser</name>
-    <description>A Java library to extract Title, Authors and Abstract from research paper given in pdf format.</description>
-    <url>http://github.com/nemausus/research-paper-parser</url>
+    <description>A Java library to extract Title, Authors and Abstract from research paper given in pdf format.
+    </description>
+    <url>https://github.com/nemausus/research-paper-parser</url>
 
     <licenses>
         <license>
@@ -22,8 +23,17 @@
     </licenses>
 
     <scm>
-        <url>http://svn.apache.org/viewcvs.cgi/maven</url>
+        <url>https://github.com/nemausus/research-paper-parser</url>
+        <connection>scm:git:git://github.com/nemausus/research-paper-parser.git</connection>
     </scm>
+
+    <developers>
+        <developer>
+            <id>nemausus</id>
+            <name>Naresh Kumar</name>
+            <email>nareshkumargangwar@gmail.com</email>
+        </developer>
+    </developers>
 
     <build>
         <plugins>
@@ -38,6 +48,24 @@
                     <showWarnings>true</showWarnings>
                     <fork>true</fork>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.4.1</version>
             </plugin>
         </plugins>
 

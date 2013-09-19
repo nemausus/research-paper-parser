@@ -11,7 +11,9 @@ import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.util.TextNormalize;
 import org.apache.pdfbox.util.TextPosition;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.*;
 
 public class PdfReader extends PDFParserListener
@@ -31,12 +33,49 @@ public class PdfReader extends PDFParserListener
     private static final int FONT_OFFSET = 1000000;
     private static final int CAP_OFFSET = 100;
 
+    public static PdfReader getInstance() throws IOException
+    {
+        if (instance == null)
+        {
+            TextNormalize normalize = new TextNormalize("UTF-8");
+            PDFParser pdfParser = new PDFParser(normalize);
+            instance = new PdfReader(pdfParser, normalize);
+        }
+        return instance;
+    }
+
     private PdfReader(PDFParser pdfParser, TextNormalize normalize)
     {
         this.pdfParser = pdfParser;
         this.normalize = normalize;
         pdfParser.setDropThreshold(2.8f);
         pdfParser.setListener(this);
+    }
+
+    public Document read(String filePath) throws IOException
+    {
+        PDDocument doc = PDDocument.load(filePath);
+        return read(doc);
+    }
+
+    public Document read(File file) throws IOException
+    {
+        PDDocument doc = PDDocument.load(file);
+        return read(doc);
+    }
+
+    public Document read(InputStream inputStream) throws IOException
+    {
+        PDDocument doc = PDDocument.load(inputStream);
+        return read(doc);
+    }
+
+    public Document read(PDDocument doc) throws IOException
+    {
+        pdfParser.parse(doc);
+        doc.close();
+        reset();
+        return document;
     }
 
     @Override
@@ -108,21 +147,13 @@ public class PdfReader extends PDFParserListener
     {
     }
 
+
     private void reset()
     {
         pdfParser.resetEngine();
         fontSizeMap.clear();
         leftMarginMap.clear();
         rightMarginMap.clear();
-    }
-
-    public Document buildDocument(String inFilePath) throws IOException
-    {
-        PDDocument doc = PDDocument.load(inFilePath);
-        pdfParser.parse(doc);
-        doc.close();
-        reset();
-        return document;
     }
 
     private void extractParams(List<TextPosition> line, Page page)
@@ -240,17 +271,6 @@ public class PdfReader extends PDFParserListener
     private String getString(StringBuilder sb)
     {
         return normalize.normalizePres(sb.toString()).replaceAll("\\p{C}", "").trim();
-    }
-
-    public static PdfReader getInstance() throws IOException
-    {
-        if (instance == null)
-        {
-            TextNormalize normalize = new TextNormalize("UTF-8");
-            PDFParser pdfParser = new PDFParser(normalize);
-            instance = new PdfReader(pdfParser, normalize);
-        }
-        return instance;
     }
 
     private int normalize(float number, boolean toUpper)

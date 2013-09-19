@@ -1,4 +1,4 @@
-package io.nemausus.example;
+package io.nemausus.examples;
 
 import io.nemausus.document.Document;
 import io.nemausus.pdfreader.PdfReader;
@@ -20,7 +20,7 @@ public class PdfReaderExample
         {
             String inFilePath = fileEntry.getAbsolutePath();
             String inFilename = fileEntry.getName();
-            Document document = pdfReader.buildDocument(inFilePath);
+            Document document = pdfReader.read(inFilePath);
             document.setId(inFilename);
             String outFilePath = outFolder + StringUtils.removeEndIgnoreCase(inFilename, ".pdf") + ".json";
             mapper.writeValue(new File(outFilePath), document);

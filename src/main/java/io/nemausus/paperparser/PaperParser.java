@@ -6,9 +6,9 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.*;
 import java.util.regex.Pattern;
 
-public class paperParser
+public class PaperParser
 {
-    private static paperParser instance = null;
+    private static PaperParser instance = null;
     private String ABSTRACT = "abstract";
     private String[] PREFIXES = {"keywords", "index terms", "general terms"};
     private String[] NO_NAMES = {"Computer", "Department", "Science", "University", "School", "Academy", "College",
@@ -17,21 +17,21 @@ public class paperParser
     private static final String SPACE = " ";
     private float absConf = 1;
 
-    private paperParser()
+    private PaperParser()
     {
 
     }
 
-    public static paperParser getInstance()
+    public static PaperParser getInstance()
     {
         if (instance == null)
         {
-            instance = new paperParser();
+            instance = new PaperParser();
         }
         return instance;
     }
 
-    public Paper buildPaper(Document document)
+    public Paper parse(Document document)
     {
         absConf = 1;
         Paper paper = new Paper(document.getId());
@@ -53,7 +53,7 @@ public class paperParser
         {
             abs += " " + paragraph.text();
         }
-        return StringUtils.removeStartIgnoreCase(abs, ABSTRACT).replaceAll("^[^A-Za-z]*", "") + "[" + absConf + "]";
+        return StringUtils.removeStartIgnoreCase(abs, ABSTRACT).replaceAll("^[^A-Za-z]*", "");
     }
 
     private String extractTitle(DocumentIterator iterator)
@@ -196,18 +196,6 @@ public class paperParser
         if (author.lastIndexOf(' ') == author.length() - 2)
             author = author.substring(0, author.length() - 2);
         return author;
-    }
-
-    private List<String> extractEmails(String getText)
-    {
-        List<String> boiled = new ArrayList<String>();
-        for (String word : Arrays.asList(getText.split(" ")))
-        {
-            word = word.trim();
-            if (EMAIL_REGEX.matcher(word).find())
-                boiled.add(word);
-        }
-        return boiled;
     }
 
     private boolean isAbstractEx(Paragraph paragraph, int abstractFontSize, int length)

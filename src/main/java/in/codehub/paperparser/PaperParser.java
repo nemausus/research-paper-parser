@@ -1,6 +1,6 @@
-package io.nemausus.paperparser;
+package in.codehub.paperparser;
 
-import io.nemausus.document.*;
+import in.codehub.document.*;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.*;

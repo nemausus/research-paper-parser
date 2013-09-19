@@ -1,4 +1,4 @@
-package io.nemausus.paperparser;
+package in.codehub.paperparser;
 
 import java.util.ArrayList;
 import java.util.List;

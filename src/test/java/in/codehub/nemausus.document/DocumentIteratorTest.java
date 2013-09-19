@@ -1,4 +1,4 @@
-package io.nemausus.document;
+package in.codehub.document;
 
 import org.junit.Before;
 import org.junit.Test;

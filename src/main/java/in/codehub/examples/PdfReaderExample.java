@@ -1,7 +1,7 @@
-package io.nemausus.examples;
+package in.codehub.examples;
 
-import io.nemausus.document.Document;
-import io.nemausus.pdfreader.PdfReader;
+import in.codehub.document.Document;
+import in.codehub.pdfreader.PdfReader;
 import org.apache.commons.lang3.StringUtils;
 import org.codehaus.jackson.map.ObjectMapper;
 

@@ -1,9 +1,9 @@
-package io.nemausus.pdfreader;
+package in.codehub.pdfreader;
 
-import io.nemausus.document.Document;
-import io.nemausus.document.Line;
-import io.nemausus.document.Page;
-import io.nemausus.document.Paragraph;
+import in.codehub.document.Document;
+import in.codehub.document.Line;
+import in.codehub.document.Page;
+import in.codehub.document.Paragraph;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;

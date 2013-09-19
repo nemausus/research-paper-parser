@@ -1,4 +1,4 @@
-package io.nemausus.pdfreader;
+package in.codehub.pdfreader;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;

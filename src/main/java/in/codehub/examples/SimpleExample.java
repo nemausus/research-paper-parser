@@ -1,9 +1,9 @@
-package io.nemausus.examples;
+package in.codehub.examples;
 
-import io.nemausus.document.Document;
-import io.nemausus.paperparser.Paper;
-import io.nemausus.paperparser.PaperParser;
-import io.nemausus.pdfreader.PdfReader;
+import in.codehub.document.Document;
+import in.codehub.paperparser.Paper;
+import in.codehub.paperparser.PaperParser;
+import in.codehub.pdfreader.PdfReader;
 
 import java.io.IOException;
 

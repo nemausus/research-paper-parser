@@ -1,4 +1,4 @@
-package io.nemausus.paperparser;
+package in.codehub.paperparser;
 
 public class PaperTags
 {
